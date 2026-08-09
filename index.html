@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Horizonte Imóveis — assessoria completa para compra, venda e locação de imóveis em São Paulo.">
+  <title>Horizonte Imóveis | Corretora em São Paulo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER: topo fixo com logo e menu de navegação -->
+  <header class="header">
+    <a href="#inicio" class="logo">Horizonte Imóveis</a>
+
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+    </button>
+
+    <nav class="nav" aria-label="Menu principal">
+      <ul class="nav-list">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#imoveis">Imóveis</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO: primeira impressão — headline + botão de ação -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <p class="hero-label">Corretora em São Paulo</p>
+        <h1>Encontre o imóvel ideal para viver ou investir</h1>
+        <p class="hero-text">
+          Assessoria completa para compra, venda e locação de imóveis
+          residenciais e comerciais nos melhores bairros da cidade.
+        </p>
+        <div class="hero-actions">
+          <a href="#imoveis" class="btn btn-primary">Ver imóveis</a>
+          <a href="#contato" class="btn btn-secondary">Falar com um corretor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMÓVEIS: cards com os imóveis em destaque -->
+    <section id="imoveis" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-label">Destaques</p>
+          <h2>Imóveis selecionados</h2>
+          <p>Opções exclusivas nos bairros mais procurados de São Paulo.</p>
+        </header>
+
+        <div class="properties-grid">
+
+          <article class="property-card">
+            <img
+              src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop"
+              alt="Apartamento moderno com sala ampla e janelas do chão ao teto"
+            >
+            <div class="property-info">
+              <p class="property-type">Apartamento · Venda</p>
+              <h3>Apartamento nos Jardins</h3>
+              <p class="property-location">Jardins, São Paulo</p>
+              <p class="property-price">R$ 1.850.000</p>
+              <ul class="property-details">
+                <li>3 quartos</li>
+                <li>120 m²</li>
+                <li>2 vagas</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="property-card">
+            <img
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop"
+              alt="Casa contemporânea com piscina e área externa"
+            >
+            <div class="property-info">
+              <p class="property-type">Casa · Venda</p>
+              <h3>Casa em Alto de Pinheiros</h3>
+              <p class="property-location">Alto de Pinheiros, São Paulo</p>
+              <p class="property-price">R$ 3.200.000</p>
+              <ul class="property-details">
+                <li>4 quartos</li>
+                <li>280 m²</li>
+                <li>4 vagas</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="property-card">
+            <img
+              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop"
+              alt="Apartamento compacto e bem iluminado"
+            >
+            <div class="property-info">
+              <p class="property-type">Apartamento · Locação</p>
+              <h3>Studio na Vila Olímpia</h3>
+              <p class="property-location">Vila Olímpia, São Paulo</p>
+              <p class="property-price">R$ 4.500 / mês</p>
+              <ul class="property-details">
+                <li>1 quarto</li>
+                <li>45 m²</li>
+                <li>1 vaga</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="property-card">
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop"
+              alt="Cobertura com vista panorâmica da cidade"
+            >
+            <div class="property-info">
+              <p class="property-type">Cobertura · Venda</p>
+              <h3>Cobertura no Itaim Bibi</h3>
+              <p class="property-location">Itaim Bibi, São Paulo</p>
+              <p class="property-price">R$ 5.900.000</p>
+              <ul class="property-details">
+                <li>4 quartos</li>
+                <li>320 m²</li>
+                <li>3 vagas</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS: o que a corretora oferece -->
+    <section id="servicos" class="section section-dark">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-label">Serviços</p>
+          <h2>Como podemos ajudar</h2>
+          <p>Suporte completo em cada etapa da sua jornada imobiliária.</p>
+        </header>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <h3>Compra</h3>
+            <p>
+              Encontramos o imóvel certo para o seu perfil, com análise de
+              mercado e negociação transparente.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>Venda</h3>
+            <p>
+              Avaliação precisa, divulgação estratégica e acompanhamento
+              até a assinatura do contrato.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>Locação</h3>
+            <p>
+              Gestão completa de locação — desde a busca do inquilino ideal
+              até a administração do contrato.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>Avaliação</h3>
+            <p>
+              Laudo de mercado detalhado para você tomar decisões com
+              segurança, seja para vender ou investir.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE: história da empresa e equipe -->
+    <section id="sobre" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-label">Sobre nós</p>
+          <h2>Tradição e expertise no mercado paulistano</h2>
+        </header>
+
+        <div class="about-content">
+          <p>
+            Há mais de 15 anos, a Horizonte Imóveis conecta pessoas ao lugar
+            certo para viver e investir. Nossa equipe combina conhecimento
+            profundo do mercado imobiliário de São Paulo com atendimento
+            personalizado e discreto.
+          </p>
+          <p>
+            Atuamos nos bairros mais valorizados da capital — Jardins,
+            Pinheiros, Itaim Bibi, Vila Olímpia e região — com foco em
+            imóveis residenciais de alto padrão e oportunidades comerciais
+            selecionadas.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop"
+              alt="Foto de Ricardo Mendes, diretor comercial"
+            >
+            <h3>Ricardo Mendes</h3>
+            <p>Diretor Comercial · CRECI 123.456</p>
+          </article>
+
+          <article class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop"
+              alt="Foto de Camila Ferreira, corretora sênior"
+            >
+            <h3>Camila Ferreira</h3>
+            <p>Corretora Sênior · CRECI 234.567</p>
+          </article>
+
+          <article class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"
+              alt="Foto de André Souza, consultor de investimentos"
+            >
+            <h3>André Souza</h3>
+            <p>Consultor de Investimentos · CRECI 345.678</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS: prova social — clientes satisfeitos -->
+    <section id="depoimentos" class="section section-dark">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-label">Depoimentos</p>
+          <h2>O que nossos clientes dizem</h2>
+        </header>
+
+        <div class="testimonials-grid">
+
+          <blockquote class="testimonial-card">
+            <p>
+              "A Camila entendeu exatamente o que procurávamos. Encontramos
+              nosso apartamento nos Jardins em menos de um mês, com total
+              transparência em cada etapa."
+            </p>
+            <footer>
+              <cite>Mariana e Felipe Alves</cite>
+              <span>Compradores · Jardins</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card">
+            <p>
+              "Vendi meu imóvel acima do valor que esperava. A equipe cuidou
+              de tudo — fotos, visitas, documentação. Processo impecável."
+            </p>
+            <footer>
+              <cite>Roberto Tanaka</cite>
+              <span>Vendedor · Pinheiros</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card">
+            <p>
+              "Como investidor, valorizo dados e agilidade. A Horizonte
+              entrega os dois. Já fechei três negócios com eles."
+            </p>
+            <footer>
+              <cite>Luciana Prado</cite>
+              <span>Investidora · Itaim Bibi</span>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO: formulário + informações de contato -->
+    <section id="contato" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-label">Contato</p>
+          <h2>Vamos conversar?</h2>
+          <p>Entre em contato e um de nossos corretores retornará em até 24 horas.</p>
+        </header>
+
+        <div class="contact-grid">
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <!-- Campo anti-spam (invisível — bots preenchem, humanos não) -->
+            <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form-group">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="5" placeholder="Conte-nos o que você procura..." required></textarea>
+            </div>
+
+            <p class="form-status" role="status" aria-live="polite"></p>
+
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              <span class="btn-text">Enviar mensagem</span>
+            </button>
+          </form>
+
+          <address class="contact-info">
+            <h3>Horizonte Imóveis</h3>
+            <p>Alameda Santos, 1000 — Jardins</p>
+            <p>São Paulo, SP — CEP 01418-100</p>
+            <p><a href="tel:+551130001234">(11) 3000-1234</a></p>
+            <p><a href="mailto:contato@horizonteimoveis.com.br">contato@horizonteimoveis.com.br</a></p>
+            <p>
+              <a href="https://wa.me/5511999991234" target="_blank" rel="noopener noreferrer">
+                WhatsApp: (11) 99999-1234
+              </a>
+            </p>
+            <p>Segunda a sexta, 9h às 18h</p>
+          </address>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER: rodapé com links e copyright -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="logo">Horizonte Imóveis</p>
+          <p>Conectando pessoas ao lugar certo desde 2010.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Links do rodapé">
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#imoveis">Imóveis</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-contact">
+          <p>contato@horizonteimoveis.com.br</p>
+          <p>(11) 3000-1234</p>
+        </div>
+      </div>
+
+      <p class="footer-copy">
+        &copy; 2026 Horizonte Imóveis. Todos os direitos reservados. CRECI-SP J-12345.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
