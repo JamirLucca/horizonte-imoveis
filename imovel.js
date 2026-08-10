@@ -15,7 +15,6 @@ function setupPropertyGallery(imovel) {
   const lightboxPrev = document.getElementById("lightbox-prev");
   const lightboxNext = document.getElementById("lightbox-next");
   const lightboxCounter = document.getElementById("lightbox-counter");
-  const lightboxDots = document.getElementById("lightbox-dots");
   const lightboxBackdrop = document.getElementById("lightbox-backdrop");
   const lightboxClose = document.getElementById("lightbox-close");
 
@@ -28,8 +27,8 @@ function setupPropertyGallery(imovel) {
     return item.alt || imovel.titulo || `Foto ${index + 1}`;
   }
 
-  function updateDots(container, activeIndex) {
-    container.querySelectorAll(".gallery-dot").forEach((btn, i) => {
+  function updateDots(activeIndex) {
+    dots.querySelectorAll(".gallery-dot").forEach((btn, i) => {
       const isActive = i === activeIndex;
       btn.classList.toggle("is-active", isActive);
       btn.setAttribute("aria-selected", isActive ? "true" : "false");
@@ -46,52 +45,40 @@ function setupPropertyGallery(imovel) {
     imgEl.src = src;
     imgEl.alt = alt;
     counter.textContent = label;
-    updateDots(dots, current);
+    updateDots(current);
 
     if (lightboxOpen && lightboxImg) {
       lightboxImg.src = src;
       lightboxImg.alt = alt;
       lightboxCounter.textContent = label;
-      updateDots(lightboxDots, current);
     }
   }
 
   function openLightbox() {
     if (!lightbox || !lightboxImg || !trigger) return;
 
-    const rect = trigger.getBoundingClientRect();
     lightbox.hidden = false;
     lightbox.setAttribute("aria-hidden", "false");
-    lightbox.style.setProperty("--from-x", `${rect.left}px`);
-    lightbox.style.setProperty("--from-y", `${rect.top}px`);
-    lightbox.style.setProperty("--from-w", `${rect.width}px`);
-    lightbox.style.setProperty("--from-h", `${rect.height}px`);
-
     lightboxOpen = true;
     show(current);
     document.body.classList.add("lightbox-open");
 
-    requestAnimationFrame(() => {
-      lightbox.classList.add("is-open");
-      requestAnimationFrame(() => lightbox.classList.add("is-expanded"));
-    });
-
+    requestAnimationFrame(() => lightbox.classList.add("is-open"));
     lightboxClose.focus();
   }
 
   function closeLightbox() {
     if (!lightbox || !lightboxOpen) return;
 
-    lightbox.classList.remove("is-expanded");
+    lightbox.classList.remove("is-open");
     lightboxOpen = false;
+    document.body.classList.remove("lightbox-open");
 
     window.setTimeout(() => {
-      lightbox.classList.remove("is-open");
       lightbox.hidden = true;
       lightbox.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("lightbox-open");
       trigger.focus();
-    }, 420);
+    }, 350);
   }
 
   applyImageFallback(imgEl);
@@ -99,7 +86,6 @@ function setupPropertyGallery(imovel) {
   show(0);
 
   trigger.addEventListener("click", openLightbox);
-
   lightboxBackdrop.addEventListener("click", closeLightbox);
   lightboxClose.addEventListener("click", closeLightbox);
 
@@ -135,25 +121,19 @@ function setupPropertyGallery(imovel) {
   counter.hidden = false;
   dots.hidden = false;
   lightboxNav.hidden = false;
-  lightboxDots.hidden = false;
 
   imagens.forEach((item, index) => {
-    function createDot() {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "gallery-dot";
-      dot.setAttribute("role", "tab");
-      dot.setAttribute("aria-label", imageAlt(item, index));
-      dot.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        show(index);
-      });
-      return dot;
-    }
-
-    dots.appendChild(createDot());
-    lightboxDots.appendChild(createDot());
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "gallery-dot";
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", imageAlt(item, index));
+    dot.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      show(index);
+    });
+    dots.appendChild(dot);
   });
 
   function goPrev(event) {
