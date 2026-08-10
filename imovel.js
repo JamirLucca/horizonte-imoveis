@@ -23,8 +23,10 @@ async function loadPropertyPage() {
   contentEl.hidden = false;
   document.title = `${imovel.titulo} | Horizonte Imóveis`;
 
-  document.getElementById("property-image").src = imovel.imagem;
-  document.getElementById("property-image").alt = imovel.imagemAlt;
+  const heroImage = document.getElementById("property-image");
+  heroImage.src = detailImageUrl(imovel.imagem);
+  heroImage.alt = imovel.imagemAlt;
+  applyImageFallback(heroImage);
   document.getElementById("property-type").textContent = `${imovel.tipo} · ${imovel.negocio}`;
   document.getElementById("property-title").textContent = imovel.titulo;
   document.getElementById("property-location").textContent = imovel.local;

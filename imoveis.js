@@ -2,13 +2,51 @@
 
 const IMOVEIS_JSON_URL = "content/imoveis.json";
 
-function cardImageUrl(url) {
-  if (!url) return "";
-  if (url.includes("unsplash.com") && !url.includes("w=600")) {
-    const separator = url.includes("?") ? "&" : "?";
-    return `${url}${separator}w=600&h=400&fit=crop`;
+function normalizeImageUrl(imagem) {
+  if (!imagem) return "";
+  if (typeof imagem === "string") return imagem.trim();
+  if (typeof imagem === "object") {
+    return imagem.url || imagem.src || imagem.path || "";
   }
-  return url;
+  return "";
+}
+
+function resolveImageUrl(url, size = "card") {
+  const normalized = normalizeImageUrl(url);
+  if (!normalized) return "";
+
+  // URLs externas (Unsplash, etc.)
+  if (/^https?:\/\//i.test(normalized)) {
+    if (normalized.includes("unsplash.com")) {
+      const base = normalized.split("?")[0];
+      return size === "detail"
+        ? `${base}?w=1200&h=800&fit=crop&auto=format&q=80`
+        : `${base}?w=600&h=400&fit=crop&auto=format&q=80`;
+    }
+    return normalized;
+  }
+
+  // Fotos enviadas pelo painel (/images/imoveis/...)
+  if (normalized.startsWith("/")) return normalized;
+  return `/${normalized}`;
+}
+
+function cardImageUrl(url) {
+  return resolveImageUrl(url, "card");
+}
+
+function detailImageUrl(url) {
+  return resolveImageUrl(url, "detail");
+}
+
+function applyImageFallback(img) {
+  img.referrerPolicy = "no-referrer";
+  img.loading = "lazy";
+  img.addEventListener("error", () => {
+    img.style.objectFit = "contain";
+    img.style.backgroundColor = "#E5E7EB";
+    img.alt = "Imagem indisponível";
+  });
 }
 
 function normalizeCaracteristicas(list) {
@@ -26,6 +64,7 @@ async function fetchImoveis() {
   const data = await response.json();
   return data.imoveis.map((imovel) => ({
     ...imovel,
+    imagem: normalizeImageUrl(imovel.imagem),
     caracteristicas: normalizeCaracteristicas(imovel.caracteristicas),
   }));
 }
@@ -47,6 +86,7 @@ function createPropertyCard(imovel) {
   const img = document.createElement("img");
   img.src = cardImageUrl(imovel.imagem);
   img.alt = imovel.imagemAlt || imovel.titulo;
+  applyImageFallback(img);
 
   const info = document.createElement("div");
   info.className = "property-info";
