@@ -1,0 +1,66 @@
+# Decap CMS — painel do cliente Horizonte Imóveis
+# Documentação: https://decapcms.org/docs/
+
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "images/imoveis"
+public_folder: "/images/imoveis"
+
+collections:
+  - name: imoveis
+    label: Imóveis
+    files:
+      - label: "Lista de imóveis"
+        name: lista
+        file: "content/imoveis.json"
+        fields:
+          - label: Imóveis
+            name: imoveis
+            label_singular: Imóvel
+            widget: list
+            summary: "{{fields.titulo}} — {{fields.preco}}"
+            fields:
+              - {
+                  label: "Identificador (URL)",
+                  name: slug,
+                  widget: string,
+                  hint: "Sem espaços ou acentos. Ex: moema, vila-mariana",
+                }
+              - { label: "Título", name: titulo, widget: string }
+              - {
+                  label: "Tipo",
+                  name: tipo,
+                  widget: select,
+                  options: ["Apartamento", "Casa", "Cobertura", "Studio", "Sala comercial"],
+                }
+              - {
+                  label: "Negócio",
+                  name: negocio,
+                  widget: select,
+                  options: ["Venda", "Locação"],
+                }
+              - { label: "Bairro / Cidade", name: local, widget: string }
+              - { label: "Endereço completo", name: endereco, widget: string }
+              - { label: "Preço", name: preco, widget: string, hint: "Ex: R$ 1.850.000 ou R$ 4.500 / mês" }
+              - { label: "Quartos", name: quartos, widget: number }
+              - { label: "Banheiros", name: banheiros, widget: number }
+              - { label: "Área (m²)", name: area, widget: number }
+              - { label: "Vagas", name: vagas, widget: number }
+              - { label: "Condomínio", name: condominio, widget: string }
+              - { label: "IPTU", name: iptu, widget: string }
+              - {
+                  label: "Foto principal",
+                  name: imagem,
+                  widget: image,
+                  hint: "Faça upload ou use URL externa",
+                }
+              - { label: "Descrição da foto (acessibilidade)", name: imagemAlt, widget: string }
+              - { label: "Descrição do imóvel", name: descricao, widget: text }
+              - label: Características
+                name: caracteristicas
+                widget: list
+                field: { label: Característica, name: item, widget: string }

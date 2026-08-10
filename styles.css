@@ -419,6 +419,14 @@ address {
   color: var(--color-accent-hover);
 }
 
+.properties-loading,
+.properties-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-xl);
+}
+
 /* --- Página de detalhe do imóvel --- */
 .btn-sm {
   padding: 0.625rem 1.25rem;

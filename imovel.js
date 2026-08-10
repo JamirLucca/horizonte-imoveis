@@ -1,15 +1,25 @@
 // Página de detalhe do imóvel (imovel.html)
 
 const slug = new URLSearchParams(window.location.search).get("slug");
-const imovel = slug ? IMOVEIS[slug] : null;
-
 const notFoundEl = document.getElementById("property-not-found");
 const contentEl = document.getElementById("property-content");
 
-if (!imovel) {
-  notFoundEl.hidden = false;
-  document.title = "Imóvel não encontrado | Horizonte Imóveis";
-} else {
+async function loadPropertyPage() {
+  let imovel = null;
+
+  try {
+    const imoveis = await fetchImoveis();
+    imovel = findImovelBySlug(imoveis, slug);
+  } catch {
+    imovel = null;
+  }
+
+  if (!imovel) {
+    notFoundEl.hidden = false;
+    document.title = "Imóvel não encontrado | Horizonte Imóveis";
+    return;
+  }
+
   contentEl.hidden = false;
   document.title = `${imovel.titulo} | Horizonte Imóveis`;
 
@@ -45,17 +55,20 @@ if (!imovel) {
     );
     whatsappLink.href = `https://wa.me/5511999991234?text=${texto}`;
   }
+
+  setupContactForm(imovel);
 }
 
-// Formulário de contato (mesma lógica da página principal)
-const FORMSPREE_FORM_ID = "YOUR_FORM_ID";
-const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
+function setupContactForm(imovel) {
+  const FORMSPREE_FORM_ID = "YOUR_FORM_ID";
+  const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
-const contactForm = document.getElementById("contact-form");
-const submitBtn = document.getElementById("submit-btn");
-const formStatus = document.querySelector(".form-status");
+  const contactForm = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("submit-btn");
+  const formStatus = document.querySelector(".form-status");
 
-if (contactForm) {
+  if (!contactForm) return;
+
   function showFormStatus(message, type) {
     formStatus.textContent = message;
     formStatus.className = `form-status is-visible is-${type}`;
@@ -75,9 +88,10 @@ if (contactForm) {
     submitBtn.classList.add("is-loading");
 
     const formData = new FormData(contactForm);
-    formData.append("_subject", imovel
-      ? `Interesse: ${imovel.titulo} — Horizonte Imóveis`
-      : "Contato — Horizonte Imóveis");
+    formData.append(
+      "_subject",
+      imovel ? `Interesse: ${imovel.titulo} — Horizonte Imóveis` : "Contato — Horizonte Imóveis"
+    );
 
     try {
       const response = await fetch(FORMSPREE_URL, {
@@ -104,7 +118,8 @@ if (contactForm) {
   });
 }
 
-// Scroll suave para #contato
+loadPropertyPage();
+
 document.querySelectorAll('a[href="#contato"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
