@@ -1,6 +1,20 @@
 {
   "imoveis": [
     {
+      "imagens": [
+        {
+          "url": "/images/imoveis/lrndr-img-6865-1692879354.jpg",
+          "alt": "Apartamento no Centro"
+        },
+        {
+          "url": "/images/imoveis/c39ia-img-20241125-wa0065-1732711757.jpg.webp",
+          "alt": "Sala Ampla"
+        },
+        {
+          "url": "/images/imoveis/7y29x-img-20241125-wa0064-1732711757.jpg.webp",
+          "alt": "Mobiliado"
+        }
+      ],
       "quartos": 3,
       "iptu": "R$ 1.200 / mês",
       "descricao": "Apartamento refinado em um dos endereços mais desejados de São Paulo. Ambientes integrados, acabamento em madeira nobre e iluminação natural em todos os cômodos. Ideal para quem busca conforto e praticidade no coração dos Jardins.",
@@ -20,17 +34,17 @@
       "area": 120,
       "vagas": 2,
       "preco": "R$ 1.850.000",
-      "imagens": [
-        {
-          "url": "/images/imoveis/lrndr-img-6865-1692879354.jpg",
-          "alt": "Apartamento moderno com sala ampla e janelas do chão ao teto"
-        }
-      ],
       "tipo": "Apartamento",
       "banheiros": 3,
       "titulo": "Apartamento nos Jardins"
     },
     {
+      "imagens": [
+        {
+          "url": "/images/imoveis/pinheiros.svg",
+          "alt": "Casa contemporânea com piscina e área externa"
+        }
+      ],
       "quartos": 4,
       "iptu": "R$ 2.400 / mês",
       "descricao": "Residência contemporânea com arquitetura assinada, piscina aquecida e jardim paisagístico. Espaços generosos para família, home office e área de lazer completa. Localização privilegiada, próxima a parques e gastronomia de Alto de Pinheiros.",
@@ -50,17 +64,17 @@
       "area": 280,
       "vagas": 4,
       "preco": "R$ 3.200.000",
-      "imagens": [
-        {
-          "url": "/images/imoveis/pinheiros.svg",
-          "alt": "Casa contemporânea com piscina e área externa"
-        }
-      ],
       "tipo": "Casa",
       "banheiros": 5,
       "titulo": "Casa em Alto de Pinheiros"
     },
     {
+      "imagens": [
+        {
+          "url": "/images/imoveis/vila-olimpia.svg",
+          "alt": "Apartamento compacto e bem iluminado"
+        }
+      ],
       "quartos": 1,
       "iptu": "Incluso",
       "descricao": "Studio moderno e funcional no epicentro corporativo da Vila Olímpia. Perfeito para profissionais que valorizam mobilidade, design e proximidade com metrô, shoppings e restaurantes. Mobiliado e pronto para morar.",
@@ -80,17 +94,17 @@
       "area": 45,
       "vagas": 1,
       "preco": "R$ 4.500 / mês",
-      "imagens": [
-        {
-          "url": "/images/imoveis/vila-olimpia.svg",
-          "alt": "Apartamento compacto e bem iluminado"
-        }
-      ],
       "tipo": "Apartamento",
       "banheiros": 1,
       "titulo": "Studio na Vila Olímpia"
     },
     {
+      "imagens": [
+        {
+          "url": "/images/imoveis/itaim-bibi.svg",
+          "alt": "Cobertura com vista panorâmica da cidade"
+        }
+      ],
       "quartos": 4,
       "iptu": "R$ 3.100 / mês",
       "descricao": "Cobertura duplex com vista panorâmica de 360° e terraço com piscina privativa. Acabamento premium, automação residencial e 4 suítes. Um dos endereços mais exclusivos do Itaim Bibi, com privacidade e sofisticação incomparáveis.",
@@ -110,17 +124,17 @@
       "area": 320,
       "vagas": 3,
       "preco": "R$ 5.900.000",
-      "imagens": [
-        {
-          "url": "/images/imoveis/itaim-bibi.svg",
-          "alt": "Cobertura com vista panorâmica da cidade"
-        }
-      ],
       "tipo": "Cobertura",
       "banheiros": 5,
       "titulo": "Cobertura no Itaim Bibi"
     },
     {
+      "imagens": [
+        {
+          "url": "/images/imoveis/moema.svg",
+          "alt": "Apartamento iluminado em Moema com sala e varanda"
+        }
+      ],
       "quartos": 2,
       "iptu": "R$ 780 / mês",
       "descricao": "Apartamento reformado a duas quadras do Parque Ibirapuera, com sala e varanda integradas, cozinha planejada e suíte com armários embutidos. Condomínio com piscina, academia e salão de festas. Excelente localização, próximo ao metrô Moema e ao Shopping Ibirapuera.",
@@ -140,12 +154,6 @@
       "area": 78,
       "vagas": 1,
       "preco": "R$ 1.120.000",
-      "imagens": [
-        {
-          "url": "/images/imoveis/moema.svg",
-          "alt": "Apartamento iluminado em Moema com sala e varanda"
-        }
-      ],
       "tipo": "Apartamento",
       "banheiros": 2,
       "titulo": "Apartamento em Moema"
