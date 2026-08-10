@@ -355,6 +355,23 @@ address {
   object-fit: cover;
 }
 
+.property-card-media {
+  position: relative;
+}
+
+.property-photo-count {
+  position: absolute;
+  right: var(--space-sm);
+  bottom: var(--space-sm);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(26, 26, 46, 0.82);
+  color: var(--color-text-light);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .property-info {
   padding: var(--space-md);
 }
@@ -464,10 +481,85 @@ address {
   margin-top: var(--header-height);
 }
 
-.property-detail-hero img {
+.property-gallery {
+  position: relative;
+}
+
+.property-gallery img {
   width: 100%;
   height: 24rem;
   object-fit: cover;
+  display: block;
+}
+
+.gallery-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-sm);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.gallery-btn {
+  pointer-events: auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(26, 26, 46, 0.72);
+  color: var(--color-text-light);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.gallery-btn:hover {
+  background-color: rgba(26, 26, 46, 0.92);
+  transform: scale(1.05);
+}
+
+.gallery-counter {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 3;
+  margin: 0;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(26, 26, 46, 0.72);
+  color: var(--color-text-light);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-md);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.gallery-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(250, 250, 248, 0.45);
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.gallery-dot.is-active {
+  background-color: var(--color-accent);
+  transform: scale(1.15);
 }
 
 .property-detail-hero-overlay {
@@ -478,6 +570,8 @@ address {
   background: linear-gradient(to top, rgba(26, 26, 46, 0.92) 0%, rgba(26, 26, 46, 0.2) 60%);
   color: var(--color-text-light);
   padding-bottom: var(--space-xl);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .property-detail-hero-overlay h1 {
@@ -1059,8 +1153,14 @@ address {
     position: static;
   }
 
-  .property-detail-hero img {
+  .property-gallery img {
     height: 18rem;
+  }
+
+  .gallery-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.5rem;
   }
 
   .property-detail-hero-overlay h1 {

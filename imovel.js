@@ -23,10 +23,7 @@ async function loadPropertyPage() {
   contentEl.hidden = false;
   document.title = `${imovel.titulo} | Horizonte Imóveis`;
 
-  const heroImage = document.getElementById("property-image");
-  heroImage.src = detailImageUrl(imovel.imagem);
-  heroImage.alt = imovel.imagemAlt;
-  applyImageFallback(heroImage);
+  setupPropertyGallery(imovel);
   document.getElementById("property-type").textContent = `${imovel.tipo} · ${imovel.negocio}`;
   document.getElementById("property-title").textContent = imovel.titulo;
   document.getElementById("property-location").textContent = imovel.local;
@@ -59,6 +56,70 @@ async function loadPropertyPage() {
   }
 
   setupContactForm(imovel);
+}
+
+function setupPropertyGallery(imovel) {
+  const imagens = imovel.imagens || [];
+  const imgEl = document.getElementById("property-image");
+  const gallery = document.getElementById("property-gallery");
+  const nav = document.getElementById("gallery-nav");
+  const prevBtn = document.getElementById("gallery-prev");
+  const nextBtn = document.getElementById("gallery-next");
+  const counter = document.getElementById("gallery-counter");
+  const dots = document.getElementById("gallery-dots");
+
+  if (!imgEl || imagens.length === 0) return;
+
+  let current = 0;
+
+  function show(index) {
+    current = (index + imagens.length) % imagens.length;
+    const item = imagens[current];
+    imgEl.src = detailImageUrl(item.url);
+    imgEl.alt = item.alt;
+    counter.textContent = `${current + 1} / ${imagens.length}`;
+
+    dots.querySelectorAll(".gallery-dot").forEach((btn, i) => {
+      const isActive = i === current;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+  }
+
+  applyImageFallback(imgEl);
+  show(0);
+
+  if (imagens.length <= 1) return;
+
+  gallery.classList.add("has-multiple");
+  gallery.setAttribute("tabindex", "0");
+  nav.hidden = false;
+  counter.hidden = false;
+  dots.hidden = false;
+
+  imagens.forEach((item, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "gallery-dot";
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", item.alt || `Foto ${index + 1}`);
+    dot.addEventListener("click", () => show(index));
+    dots.appendChild(dot);
+  });
+
+  prevBtn.addEventListener("click", () => show(current - 1));
+  nextBtn.addEventListener("click", () => show(current + 1));
+
+  gallery.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      show(current - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      show(current + 1);
+    }
+  });
 }
 
 function setupContactForm(imovel) {

@@ -20,9 +20,13 @@
       "area": 120,
       "vagas": 2,
       "preco": "R$ 1.850.000",
-      "imagem": "/images/imoveis/lrndr-img-6865-1692879354.jpg",
+      "imagens": [
+        {
+          "url": "/images/imoveis/lrndr-img-6865-1692879354.jpg",
+          "alt": "Apartamento moderno com sala ampla e janelas do chão ao teto"
+        }
+      ],
       "tipo": "Apartamento",
-      "imagemAlt": "Apartamento moderno com sala ampla e janelas do chão ao teto",
       "banheiros": 3,
       "titulo": "Apartamento nos Jardins"
     },
@@ -46,9 +50,13 @@
       "area": 280,
       "vagas": 4,
       "preco": "R$ 3.200.000",
-      "imagem": "/images/imoveis/pinheiros.svg",
+      "imagens": [
+        {
+          "url": "/images/imoveis/pinheiros.svg",
+          "alt": "Casa contemporânea com piscina e área externa"
+        }
+      ],
       "tipo": "Casa",
-      "imagemAlt": "Casa contemporânea com piscina e área externa",
       "banheiros": 5,
       "titulo": "Casa em Alto de Pinheiros"
     },
@@ -72,9 +80,13 @@
       "area": 45,
       "vagas": 1,
       "preco": "R$ 4.500 / mês",
-      "imagem": "/images/imoveis/vila-olimpia.svg",
+      "imagens": [
+        {
+          "url": "/images/imoveis/vila-olimpia.svg",
+          "alt": "Apartamento compacto e bem iluminado"
+        }
+      ],
       "tipo": "Apartamento",
-      "imagemAlt": "Apartamento compacto e bem iluminado",
       "banheiros": 1,
       "titulo": "Studio na Vila Olímpia"
     },
@@ -98,9 +110,13 @@
       "area": 320,
       "vagas": 3,
       "preco": "R$ 5.900.000",
-      "imagem": "/images/imoveis/itaim-bibi.svg",
+      "imagens": [
+        {
+          "url": "/images/imoveis/itaim-bibi.svg",
+          "alt": "Cobertura com vista panorâmica da cidade"
+        }
+      ],
       "tipo": "Cobertura",
-      "imagemAlt": "Cobertura com vista panorâmica da cidade",
       "banheiros": 5,
       "titulo": "Cobertura no Itaim Bibi"
     },
@@ -124,9 +140,13 @@
       "area": 78,
       "vagas": 1,
       "preco": "R$ 1.120.000",
-      "imagem": "/images/imoveis/moema.svg",
+      "imagens": [
+        {
+          "url": "/images/imoveis/moema.svg",
+          "alt": "Apartamento iluminado em Moema com sala e varanda"
+        }
+      ],
       "tipo": "Apartamento",
-      "imagemAlt": "Apartamento iluminado em Moema com sala e varanda",
       "banheiros": 2,
       "titulo": "Apartamento em Moema"
     }

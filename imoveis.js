@@ -54,6 +54,29 @@ function normalizeCaracteristicas(list) {
   return list.map((item) => (typeof item === "string" ? item : item.item || ""));
 }
 
+function normalizeImagens(imovel) {
+  if (Array.isArray(imovel.imagens) && imovel.imagens.length > 0) {
+    return imovel.imagens
+      .map((item) => {
+        if (typeof item === "string") {
+          return { url: normalizeImageUrl(item), alt: imovel.imagemAlt || imovel.titulo || "" };
+        }
+        return {
+          url: normalizeImageUrl(item.url || item.imagem),
+          alt: item.alt || imovel.imagemAlt || imovel.titulo || "",
+        };
+      })
+      .filter((item) => item.url);
+  }
+
+  const legacyUrl = normalizeImageUrl(imovel.imagem);
+  if (legacyUrl) {
+    return [{ url: legacyUrl, alt: imovel.imagemAlt || imovel.titulo || "" }];
+  }
+
+  return [];
+}
+
 async function fetchImoveis() {
   const response = await fetch(`${IMOVEIS_JSON_URL}?t=${Date.now()}`);
 
@@ -62,11 +85,16 @@ async function fetchImoveis() {
   }
 
   const data = await response.json();
-  return data.imoveis.map((imovel) => ({
-    ...imovel,
-    imagem: normalizeImageUrl(imovel.imagem),
-    caracteristicas: normalizeCaracteristicas(imovel.caracteristicas),
-  }));
+  return data.imoveis.map((imovel) => {
+    const imagens = normalizeImagens(imovel);
+    return {
+      ...imovel,
+      imagens,
+      imagem: imagens[0]?.url || "",
+      imagemAlt: imagens[0]?.alt || imovel.titulo || "",
+      caracteristicas: normalizeCaracteristicas(imovel.caracteristicas),
+    };
+  });
 }
 
 function findImovelBySlug(imoveis, slug) {
@@ -83,10 +111,21 @@ function createPropertyCard(imovel) {
   const article = document.createElement("article");
   article.className = "property-card";
 
+  const media = document.createElement("div");
+  media.className = "property-card-media";
+
   const img = document.createElement("img");
   img.src = cardImageUrl(imovel.imagem);
   img.alt = imovel.imagemAlt || imovel.titulo;
   applyImageFallback(img);
+  media.appendChild(img);
+
+  if (imovel.imagens.length > 1) {
+    const badge = document.createElement("span");
+    badge.className = "property-photo-count";
+    badge.textContent = `${imovel.imagens.length} fotos`;
+    media.appendChild(badge);
+  }
 
   const info = document.createElement("div");
   info.className = "property-info";
@@ -119,7 +158,7 @@ function createPropertyCard(imovel) {
   cta.textContent = "Ver detalhes →";
 
   info.append(type, title, location, price, details, cta);
-  article.append(img, info);
+  article.append(media, info);
   link.append(article);
 
   return link;

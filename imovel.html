@@ -30,7 +30,15 @@
     <article id="property-content" hidden>
 
       <section class="property-detail-hero">
-        <img id="property-image" src="" alt="">
+        <div class="property-gallery" id="property-gallery">
+          <img id="property-image" src="" alt="">
+          <div class="gallery-nav" id="gallery-nav" hidden>
+            <button type="button" class="gallery-btn gallery-btn--prev" id="gallery-prev" aria-label="Foto anterior">‹</button>
+            <button type="button" class="gallery-btn gallery-btn--next" id="gallery-next" aria-label="Próxima foto">›</button>
+          </div>
+          <p class="gallery-counter" id="gallery-counter" hidden aria-live="polite"></p>
+          <div class="gallery-dots" id="gallery-dots" role="tablist" aria-label="Fotos do imóvel" hidden></div>
+        </div>
         <div class="property-detail-hero-overlay">
           <div class="container">
             <p id="property-type" class="property-type"></p>
