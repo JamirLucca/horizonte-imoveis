@@ -57,7 +57,7 @@ collections:
                   name: imagem,
                   widget: image,
                   choose_url: true,
-                  hint: "Faça upload OU clique em \"Insert from URL\" e cole o link https://...",
+                  hint: "Recomendado: faça upload da foto. Links externos (Unsplash) podem não funcionar no site publicado.",
                 }
               - { label: "Descrição da foto (acessibilidade)", name: imagemAlt, widget: string }
               - { label: "Descrição do imóvel", name: descricao, widget: text }
