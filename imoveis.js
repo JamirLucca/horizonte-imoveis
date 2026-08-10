@@ -55,7 +55,7 @@ function normalizeCaracteristicas(list) {
 }
 
 async function fetchImoveis() {
-  const response = await fetch(IMOVEIS_JSON_URL);
+  const response = await fetch(`${IMOVEIS_JSON_URL}?t=${Date.now()}`);
 
   if (!response.ok) {
     throw new Error("Não foi possível carregar os imóveis.");
