@@ -483,20 +483,6 @@ address {
   position: relative;
 }
 
-.gallery-dots--below {
-  position: static;
-  transform: none;
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: var(--space-sm) 0 var(--space-md);
-  background-color: var(--color-bg-dark);
-}
-
-.gallery-dots--below .gallery-dot {
-  background-color: rgba(250, 250, 248, 0.35);
-}
-
 .property-gallery {
   position: relative;
 }
@@ -593,7 +579,6 @@ body.lightbox-open {
   overflow: hidden;
 }
 
-body.lightbox-open .gallery-dots--below,
 body.lightbox-open .property-gallery .gallery-nav,
 body.lightbox-open .property-gallery .gallery-counter {
   visibility: hidden;
@@ -701,6 +686,16 @@ body.lightbox-open .property-gallery .gallery-counter {
   position: static;
   transform: none;
   margin: 0;
+}
+
+.gallery-lightbox-dots {
+  position: static;
+  transform: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: var(--space-sm) 0 0;
+  padding: 0;
 }
 
 .property-detail-hero-overlay {

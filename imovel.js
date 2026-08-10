@@ -7,7 +7,6 @@ function setupPropertyGallery(imovel) {
   const prevBtn = document.getElementById("gallery-prev");
   const nextBtn = document.getElementById("gallery-next");
   const counter = document.getElementById("gallery-counter");
-  const dots = document.getElementById("gallery-dots");
 
   const lightbox = document.getElementById("gallery-lightbox");
   const lightboxImg = document.getElementById("lightbox-image");
@@ -15,6 +14,7 @@ function setupPropertyGallery(imovel) {
   const lightboxPrev = document.getElementById("lightbox-prev");
   const lightboxNext = document.getElementById("lightbox-next");
   const lightboxCounter = document.getElementById("lightbox-counter");
+  const lightboxDots = document.getElementById("lightbox-dots");
   const lightboxBackdrop = document.getElementById("lightbox-backdrop");
   const lightboxClose = document.getElementById("lightbox-close");
 
@@ -28,7 +28,9 @@ function setupPropertyGallery(imovel) {
   }
 
   function updateDots(activeIndex) {
-    dots.querySelectorAll(".gallery-dot").forEach((btn, i) => {
+    if (!lightboxDots) return;
+
+    lightboxDots.querySelectorAll(".gallery-dot").forEach((btn, i) => {
       const isActive = i === activeIndex;
       btn.classList.toggle("is-active", isActive);
       btn.setAttribute("aria-selected", isActive ? "true" : "false");
@@ -119,8 +121,8 @@ function setupPropertyGallery(imovel) {
   gallery.setAttribute("tabindex", "0");
   nav.hidden = false;
   counter.hidden = false;
-  dots.hidden = false;
   lightboxNav.hidden = false;
+  lightboxDots.hidden = false;
 
   imagens.forEach((item, index) => {
     const dot = document.createElement("button");
@@ -133,8 +135,10 @@ function setupPropertyGallery(imovel) {
       event.stopPropagation();
       show(index);
     });
-    dots.appendChild(dot);
+    lightboxDots.appendChild(dot);
   });
+
+  updateDots(0);
 
   function goPrev(event) {
     event.stopPropagation();

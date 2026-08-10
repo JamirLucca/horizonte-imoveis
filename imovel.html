@@ -50,7 +50,6 @@
             </div>
           </div>
         </div>
-        <div class="gallery-dots gallery-dots--below" id="gallery-dots" role="tablist" aria-label="Fotos do imóvel" hidden></div>
       </section>
 
       <section class="section property-detail-body">
@@ -170,6 +169,7 @@
     <button type="button" class="gallery-lightbox-backdrop" id="lightbox-backdrop" aria-label="Fechar visualização"></button>
     <button type="button" class="gallery-lightbox-close" id="lightbox-close" aria-label="Fechar">×</button>
     <div class="gallery-lightbox-inner">
+      <p class="gallery-counter gallery-lightbox-counter" id="lightbox-counter" aria-live="polite"></p>
       <div class="gallery-lightbox-frame">
         <img id="lightbox-image" class="gallery-lightbox-image" src="" alt="">
         <div class="gallery-nav gallery-lightbox-nav" id="lightbox-nav" hidden>
@@ -177,7 +177,7 @@
           <button type="button" class="gallery-btn gallery-btn--next" id="lightbox-next" aria-label="Próxima foto">›</button>
         </div>
       </div>
-      <p class="gallery-counter gallery-lightbox-counter" id="lightbox-counter" aria-live="polite"></p>
+      <div class="gallery-dots gallery-lightbox-dots" id="lightbox-dots" role="tablist" aria-label="Fotos ampliadas" hidden></div>
     </div>
   </div>
 
