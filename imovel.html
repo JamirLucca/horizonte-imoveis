@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do imóvel | Horizonte Imóveis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">Horizonte Imóveis</a>
+    <a href="index.html#imoveis" class="btn btn-primary btn-sm">← Voltar aos imóveis</a>
+  </header>
+
+  <main id="property-page">
+
+    <!-- Conteúdo preenchido pelo JavaScript -->
+    <div id="property-not-found" class="property-not-found" hidden>
+      <div class="container">
+        <h1>Imóvel não encontrado</h1>
+        <p>O imóvel que você procura não existe ou foi removido.</p>
+        <a href="index.html#imoveis" class="btn btn-primary">Ver imóveis disponíveis</a>
+      </div>
+    </div>
+
+    <article id="property-content" hidden>
+
+      <section class="property-detail-hero">
+        <img id="property-image" src="" alt="">
+        <div class="property-detail-hero-overlay">
+          <div class="container">
+            <p id="property-type" class="property-type"></p>
+            <h1 id="property-title"></h1>
+            <p id="property-location" class="property-location"></p>
+            <p id="property-price" class="property-price property-price--hero"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section property-detail-body">
+        <div class="container property-detail-grid">
+
+          <div class="property-detail-main">
+            <h2>Sobre o imóvel</h2>
+            <p id="property-description" class="property-description"></p>
+
+            <h3>Características</h3>
+            <ul id="property-features" class="property-features"></ul>
+          </div>
+
+          <aside class="property-detail-sidebar">
+            <div class="property-specs-card">
+              <h3>Informações</h3>
+              <dl class="property-specs-list">
+                <div>
+                  <dt>Endereço</dt>
+                  <dd id="property-address"></dd>
+                </div>
+                <div>
+                  <dt>Quartos</dt>
+                  <dd id="property-bedrooms"></dd>
+                </div>
+                <div>
+                  <dt>Banheiros</dt>
+                  <dd id="property-bathrooms"></dd>
+                </div>
+                <div>
+                  <dt>Área</dt>
+                  <dd id="property-area"></dd>
+                </div>
+                <div>
+                  <dt>Vagas</dt>
+                  <dd id="property-parking"></dd>
+                </div>
+                <div>
+                  <dt>Condomínio</dt>
+                  <dd id="property-condo"></dd>
+                </div>
+                <div>
+                  <dt>IPTU</dt>
+                  <dd id="property-iptu"></dd>
+                </div>
+              </dl>
+              <a href="#contato" class="btn btn-primary btn-block">Tenho interesse</a>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+      <section id="contato" class="section section-dark">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-label">Contato</p>
+            <h2>Interessado neste imóvel?</h2>
+            <p>Preencha o formulário e um corretor retornará em até 24 horas.</p>
+          </header>
+
+          <div class="contact-grid">
+
+            <form class="contact-form" id="contact-form" novalidate>
+              <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+              <div class="form-group">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefone">Telefone / WhatsApp</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+              </div>
+
+              <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+              </div>
+
+              <p class="form-status" role="status" aria-live="polite"></p>
+
+              <button type="submit" class="btn btn-primary" id="submit-btn">
+                <span class="btn-text">Enviar mensagem</span>
+              </button>
+            </form>
+
+            <address class="contact-info">
+              <h3>Horizonte Imóveis</h3>
+              <p>Alameda Santos, 1000 — Jardins</p>
+              <p>São Paulo, SP — CEP 01418-100</p>
+              <p><a href="tel:+551130001234">(11) 3000-1234</a></p>
+              <p><a href="mailto:contato@horizonteimoveis.com.br">contato@horizonteimoveis.com.br</a></p>
+              <p>
+                <a href="https://wa.me/5511999991234?text=Olá!%20Tenho%20interesse%20em%20um%20imóvel." target="_blank" rel="noopener noreferrer">
+                  WhatsApp: (11) 99999-1234
+                </a>
+              </p>
+              <p>Segunda a sexta, 9h às 18h</p>
+            </address>
+
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Horizonte Imóveis. Todos os direitos reservados. CRECI-SP J-12345.
+      </p>
+    </div>
+  </footer>
+
+  <script src="imoveis-data.js"></script>
+  <script src="imovel.js"></script>
+</body>
+</html>

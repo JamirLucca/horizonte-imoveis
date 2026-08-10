@@ -400,6 +400,181 @@ address {
   color: var(--color-text-muted);
 }
 
+.property-card-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.property-cta {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+.property-card-link:hover .property-cta {
+  color: var(--color-accent-hover);
+}
+
+/* --- Página de detalhe do imóvel --- */
+.btn-sm {
+  padding: 0.625rem 1.25rem;
+  font-size: var(--text-sm);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.header .btn-primary.btn-sm {
+  color: var(--color-bg-dark);
+}
+
+.property-not-found {
+  padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl);
+  text-align: center;
+}
+
+.property-not-found h1 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-sm);
+}
+
+.property-not-found p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.property-detail-hero {
+  position: relative;
+  min-height: 24rem;
+  margin-top: var(--header-height);
+}
+
+.property-detail-hero img {
+  width: 100%;
+  height: 24rem;
+  object-fit: cover;
+}
+
+.property-detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(to top, rgba(26, 26, 46, 0.92) 0%, rgba(26, 26, 46, 0.2) 60%);
+  color: var(--color-text-light);
+  padding-bottom: var(--space-xl);
+}
+
+.property-detail-hero-overlay h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-xs);
+}
+
+.property-price--hero {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: var(--space-sm);
+}
+
+.property-detail-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.property-detail-main h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.property-detail-main h3 {
+  font-size: var(--text-xl);
+  margin: var(--space-lg) 0 var(--space-md);
+}
+
+.property-description {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+}
+
+.property-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+}
+
+.property-features li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.property-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.property-specs-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-md));
+}
+
+.property-specs-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-md);
+}
+
+.property-specs-list {
+  margin: 0 0 var(--space-lg);
+}
+
+.property-specs-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.property-specs-list div:last-child {
+  border-bottom: none;
+}
+
+.property-specs-list dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.property-specs-list dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
 /* --- Cards de serviços --- */
 .services-grid {
   display: grid;
@@ -866,6 +1041,30 @@ address {
   .team-card img {
     width: 8rem;
     height: 8rem;
+  }
+
+  .property-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-specs-card {
+    position: static;
+  }
+
+  .property-detail-hero img {
+    height: 18rem;
+  }
+
+  .property-detail-hero-overlay h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .property-features {
+    grid-template-columns: 1fr;
+  }
+
+  .header .btn-sm {
+    display: none;
   }
 
   .logo {
