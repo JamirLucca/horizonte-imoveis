@@ -31,7 +31,9 @@
 
       <section class="property-detail-hero">
         <div class="property-gallery" id="property-gallery">
-          <img id="property-image" src="" alt="">
+          <button type="button" class="property-gallery-trigger" id="property-gallery-trigger" aria-label="Ampliar foto">
+            <img id="property-image" src="" alt="">
+          </button>
           <div class="gallery-nav" id="gallery-nav" hidden>
             <button type="button" class="gallery-btn gallery-btn--prev" id="gallery-prev" aria-label="Foto anterior">‹</button>
             <button type="button" class="gallery-btn gallery-btn--next" id="gallery-next" aria-label="Próxima foto">›</button>
@@ -161,6 +163,20 @@
     </article>
 
   </main>
+
+  <div id="gallery-lightbox" class="gallery-lightbox" hidden aria-hidden="true">
+    <button type="button" class="gallery-lightbox-backdrop" id="lightbox-backdrop" aria-label="Fechar visualização"></button>
+    <button type="button" class="gallery-lightbox-close" id="lightbox-close" aria-label="Fechar">×</button>
+    <div class="gallery-lightbox-stage" id="lightbox-stage">
+      <img id="lightbox-image" class="gallery-lightbox-image" src="" alt="">
+      <div class="gallery-nav gallery-lightbox-nav" id="lightbox-nav" hidden>
+        <button type="button" class="gallery-btn gallery-btn--prev" id="lightbox-prev" aria-label="Foto anterior">‹</button>
+        <button type="button" class="gallery-btn gallery-btn--next" id="lightbox-next" aria-label="Próxima foto">›</button>
+      </div>
+      <p class="gallery-counter gallery-lightbox-counter" id="lightbox-counter" aria-live="polite"></p>
+      <div class="gallery-dots gallery-lightbox-dots" id="lightbox-dots" role="tablist" aria-label="Fotos ampliadas" hidden></div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container">

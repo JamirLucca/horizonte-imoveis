@@ -1,3 +1,191 @@
+function setupPropertyGallery(imovel) {
+  const imagens = imovel.imagens || [];
+  const imgEl = document.getElementById("property-image");
+  const gallery = document.getElementById("property-gallery");
+  const trigger = document.getElementById("property-gallery-trigger");
+  const nav = document.getElementById("gallery-nav");
+  const prevBtn = document.getElementById("gallery-prev");
+  const nextBtn = document.getElementById("gallery-next");
+  const counter = document.getElementById("gallery-counter");
+  const dots = document.getElementById("gallery-dots");
+
+  const lightbox = document.getElementById("gallery-lightbox");
+  const lightboxImg = document.getElementById("lightbox-image");
+  const lightboxNav = document.getElementById("lightbox-nav");
+  const lightboxPrev = document.getElementById("lightbox-prev");
+  const lightboxNext = document.getElementById("lightbox-next");
+  const lightboxCounter = document.getElementById("lightbox-counter");
+  const lightboxDots = document.getElementById("lightbox-dots");
+  const lightboxBackdrop = document.getElementById("lightbox-backdrop");
+  const lightboxClose = document.getElementById("lightbox-close");
+
+  if (!imgEl || imagens.length === 0) return;
+
+  let current = 0;
+  let lightboxOpen = false;
+
+  function imageAlt(item, index) {
+    return item.alt || imovel.titulo || `Foto ${index + 1}`;
+  }
+
+  function updateDots(container, activeIndex) {
+    container.querySelectorAll(".gallery-dot").forEach((btn, i) => {
+      const isActive = i === activeIndex;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+  }
+
+  function show(index) {
+    current = (index + imagens.length) % imagens.length;
+    const item = imagens[current];
+    const alt = imageAlt(item, current);
+    const src = detailImageUrl(item.url);
+    const label = `${current + 1} / ${imagens.length}`;
+
+    imgEl.src = src;
+    imgEl.alt = alt;
+    counter.textContent = label;
+    updateDots(dots, current);
+
+    if (lightboxOpen && lightboxImg) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCounter.textContent = label;
+      updateDots(lightboxDots, current);
+    }
+  }
+
+  function openLightbox() {
+    if (!lightbox || !lightboxImg || !trigger) return;
+
+    const rect = trigger.getBoundingClientRect();
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    lightbox.style.setProperty("--from-x", `${rect.left}px`);
+    lightbox.style.setProperty("--from-y", `${rect.top}px`);
+    lightbox.style.setProperty("--from-w", `${rect.width}px`);
+    lightbox.style.setProperty("--from-h", `${rect.height}px`);
+
+    lightboxOpen = true;
+    show(current);
+    document.body.classList.add("lightbox-open");
+
+    requestAnimationFrame(() => {
+      lightbox.classList.add("is-open");
+      requestAnimationFrame(() => lightbox.classList.add("is-expanded"));
+    });
+
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxOpen) return;
+
+    lightbox.classList.remove("is-expanded");
+    lightboxOpen = false;
+
+    window.setTimeout(() => {
+      lightbox.classList.remove("is-open");
+      lightbox.hidden = true;
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+      trigger.focus();
+    }, 420);
+  }
+
+  applyImageFallback(imgEl);
+  applyImageFallback(lightboxImg);
+  show(0);
+
+  trigger.addEventListener("click", openLightbox);
+
+  lightboxBackdrop.addEventListener("click", closeLightbox);
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  if (imagens.length === 1) {
+    lightboxCounter.textContent = "1 / 1";
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightboxOpen) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeLightbox();
+      return;
+    }
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      show(current - 1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      show(current + 1);
+    }
+  });
+
+  if (imagens.length <= 1) return;
+
+  gallery.classList.add("has-multiple");
+  gallery.setAttribute("tabindex", "0");
+  nav.hidden = false;
+  counter.hidden = false;
+  dots.hidden = false;
+  lightboxNav.hidden = false;
+  lightboxDots.hidden = false;
+
+  imagens.forEach((item, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "gallery-dot";
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", imageAlt(item, index));
+    dot.addEventListener("click", (event) => {
+      event.stopPropagation();
+      show(index);
+    });
+    dots.appendChild(dot);
+
+    const lightboxDot = dot.cloneNode(true);
+    lightboxDot.addEventListener("click", (event) => {
+      event.stopPropagation();
+      show(index);
+    });
+    lightboxDots.appendChild(lightboxDot);
+  });
+
+  function goPrev(event) {
+    event.stopPropagation();
+    show(current - 1);
+  }
+
+  function goNext(event) {
+    event.stopPropagation();
+    show(current + 1);
+  }
+
+  prevBtn.addEventListener("click", goPrev);
+  nextBtn.addEventListener("click", goNext);
+  lightboxPrev.addEventListener("click", goPrev);
+  lightboxNext.addEventListener("click", goNext);
+
+  gallery.addEventListener("keydown", (event) => {
+    if (lightboxOpen) return;
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      show(current - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      show(current + 1);
+    }
+  });
+}
+
 // Página de detalhe do imóvel (imovel.html)
 
 const slug = new URLSearchParams(window.location.search).get("slug");
@@ -56,70 +244,6 @@ async function loadPropertyPage() {
   }
 
   setupContactForm(imovel);
-}
-
-function setupPropertyGallery(imovel) {
-  const imagens = imovel.imagens || [];
-  const imgEl = document.getElementById("property-image");
-  const gallery = document.getElementById("property-gallery");
-  const nav = document.getElementById("gallery-nav");
-  const prevBtn = document.getElementById("gallery-prev");
-  const nextBtn = document.getElementById("gallery-next");
-  const counter = document.getElementById("gallery-counter");
-  const dots = document.getElementById("gallery-dots");
-
-  if (!imgEl || imagens.length === 0) return;
-
-  let current = 0;
-
-  function show(index) {
-    current = (index + imagens.length) % imagens.length;
-    const item = imagens[current];
-    imgEl.src = detailImageUrl(item.url);
-    imgEl.alt = item.alt;
-    counter.textContent = `${current + 1} / ${imagens.length}`;
-
-    dots.querySelectorAll(".gallery-dot").forEach((btn, i) => {
-      const isActive = i === current;
-      btn.classList.toggle("is-active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-    });
-  }
-
-  applyImageFallback(imgEl);
-  show(0);
-
-  if (imagens.length <= 1) return;
-
-  gallery.classList.add("has-multiple");
-  gallery.setAttribute("tabindex", "0");
-  nav.hidden = false;
-  counter.hidden = false;
-  dots.hidden = false;
-
-  imagens.forEach((item, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "gallery-dot";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-label", item.alt || `Foto ${index + 1}`);
-    dot.addEventListener("click", () => show(index));
-    dots.appendChild(dot);
-  });
-
-  prevBtn.addEventListener("click", () => show(current - 1));
-  nextBtn.addEventListener("click", () => show(current + 1));
-
-  gallery.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      show(current - 1);
-    }
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      show(current + 1);
-    }
-  });
 }
 
 function setupContactForm(imovel) {

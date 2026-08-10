@@ -55,7 +55,7 @@ collections:
               - label: Fotos do imóvel
                 name: imagens
                 widget: list
-                summary: "{{fields.alt}}"
+                summary: "Foto do imóvel"
                 hint: "Adicione quantas fotos quiser. A primeira aparece no card da listagem."
                 fields:
                   - {
@@ -69,6 +69,8 @@ collections:
                       label: "Descrição da foto (acessibilidade)",
                       name: alt,
                       widget: string,
+                      required: false,
+                      hint: "Opcional. Descreve a foto para leitores de tela.",
                     }
               - { label: "Descrição do imóvel", name: descricao, widget: text }
               - label: Características
