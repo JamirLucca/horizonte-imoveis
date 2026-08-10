@@ -476,9 +476,25 @@ address {
 }
 
 .property-detail-hero {
-  position: relative;
-  min-height: 24rem;
   margin-top: var(--header-height);
+}
+
+.property-hero-image-wrap {
+  position: relative;
+}
+
+.gallery-dots--below {
+  position: static;
+  transform: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--space-sm) 0 var(--space-md);
+  background-color: var(--color-bg-dark);
+}
+
+.gallery-dots--below .gallery-dot {
+  background-color: rgba(250, 250, 248, 0.35);
 }
 
 .property-gallery {
@@ -579,7 +595,7 @@ body.lightbox-open {
 
 body.lightbox-open .property-gallery .gallery-nav,
 body.lightbox-open .property-gallery .gallery-counter,
-body.lightbox-open .property-gallery .gallery-dots {
+body.lightbox-open .gallery-dots--below {
   opacity: 0;
   pointer-events: none;
 }
@@ -627,13 +643,6 @@ body.lightbox-open .property-gallery .gallery-dots {
   background-color: rgba(250, 250, 248, 0.28);
 }
 
-.gallery-lightbox-stage {
-  position: fixed;
-  inset: 0;
-  z-index: 1001;
-  pointer-events: none;
-}
-
 .gallery-lightbox-image {
   position: fixed;
   top: var(--from-y, 50%);
@@ -642,24 +651,24 @@ body.lightbox-open .property-gallery .gallery-dots {
   height: var(--from-h, 100%);
   object-fit: cover;
   z-index: 1002;
+  background: transparent;
   transition:
     top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     left 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gallery-lightbox.is-expanded .gallery-lightbox-image {
   top: 50%;
   left: 50%;
-  width: min(92vw, 75rem);
-  height: min(78vh, 42rem);
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 85vh;
   transform: translate(-50%, -50%);
   object-fit: contain;
-  border-radius: var(--radius-md);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
 }
 
 .gallery-lightbox-nav {
@@ -687,7 +696,10 @@ body.lightbox-open .property-gallery .gallery-dots {
   left: 50%;
   bottom: var(--space-lg);
   transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
   z-index: 1003;
+  pointer-events: auto;
 }
 
 .property-detail-hero-overlay {

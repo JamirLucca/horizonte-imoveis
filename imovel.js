@@ -138,23 +138,22 @@ function setupPropertyGallery(imovel) {
   lightboxDots.hidden = false;
 
   imagens.forEach((item, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "gallery-dot";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-label", imageAlt(item, index));
-    dot.addEventListener("click", (event) => {
-      event.stopPropagation();
-      show(index);
-    });
-    dots.appendChild(dot);
+    function createDot() {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "gallery-dot";
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", imageAlt(item, index));
+      dot.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        show(index);
+      });
+      return dot;
+    }
 
-    const lightboxDot = dot.cloneNode(true);
-    lightboxDot.addEventListener("click", (event) => {
-      event.stopPropagation();
-      show(index);
-    });
-    lightboxDots.appendChild(lightboxDot);
+    dots.appendChild(createDot());
+    lightboxDots.appendChild(createDot());
   });
 
   function goPrev(event) {
