@@ -218,12 +218,16 @@ async function loadPropertyPage() {
   const mensagemField = document.getElementById("mensagem");
   mensagemField.value = `Olá! Tenho interesse no imóvel "${imovel.titulo}" (${imovel.preco}). Gostaria de mais informações.`;
 
-  const whatsappLink = document.querySelector('.contact-info a[href*="wa.me"]');
-  if (whatsappLink) {
-    const texto = encodeURIComponent(
-      `Olá! Tenho interesse no imóvel "${imovel.titulo}" (${imovel.preco}).`
-    );
-    whatsappLink.href = `https://wa.me/5511999991234?text=${texto}`;
+  const whatsappLink = document.querySelector('.contact-info a[data-whatsapp], .contact-info a[href*="wa.me"]');
+  if (whatsappLink && imovel) {
+    whatsappLink.href = whatsAppPropertyUrl(imovel);
+  }
+
+  const propertyWhatsappBtn = document.getElementById("property-whatsapp-btn");
+  if (propertyWhatsappBtn && imovel) {
+    propertyWhatsappBtn.href = whatsAppPropertyUrl(imovel);
+    propertyWhatsappBtn.target = "_blank";
+    propertyWhatsappBtn.rel = "noopener noreferrer";
   }
 
   setupContactForm(imovel);

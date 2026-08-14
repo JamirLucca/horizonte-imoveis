@@ -102,14 +102,14 @@ function findImovelBySlug(imoveis, slug) {
 }
 
 function createPropertyCard(imovel) {
-  const link = document.createElement("a");
-  link.href = `imovel.html?slug=${encodeURIComponent(imovel.slug)}`;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.className = "property-card-link";
-
   const article = document.createElement("article");
   article.className = "property-card";
+
+  const mediaLink = document.createElement("a");
+  mediaLink.href = `imovel.html?slug=${encodeURIComponent(imovel.slug)}`;
+  mediaLink.target = "_blank";
+  mediaLink.rel = "noopener noreferrer";
+  mediaLink.className = "property-card-media-link";
 
   const media = document.createElement("div");
   media.className = "property-card-media";
@@ -127,6 +127,8 @@ function createPropertyCard(imovel) {
     media.appendChild(badge);
   }
 
+  mediaLink.appendChild(media);
+
   const info = document.createElement("div");
   info.className = "property-info";
 
@@ -134,7 +136,11 @@ function createPropertyCard(imovel) {
   type.className = "property-type";
   type.textContent = `${imovel.tipo} · ${imovel.negocio}`;
 
-  const title = document.createElement("h3");
+  const title = document.createElement("a");
+  title.href = mediaLink.href;
+  title.target = "_blank";
+  title.rel = "noopener noreferrer";
+  title.className = "property-card-title";
   title.textContent = imovel.titulo;
 
   const location = document.createElement("p");
@@ -153,15 +159,30 @@ function createPropertyCard(imovel) {
     details.appendChild(li);
   });
 
-  const cta = document.createElement("span");
-  cta.className = "property-cta";
-  cta.textContent = "Ver detalhes →";
+  const actions = document.createElement("div");
+  actions.className = "property-card-actions";
 
-  info.append(type, title, location, price, details, cta);
-  article.append(media, info);
-  link.append(article);
+  const detailLink = document.createElement("a");
+  detailLink.href = mediaLink.href;
+  detailLink.target = "_blank";
+  detailLink.rel = "noopener noreferrer";
+  detailLink.className = "property-cta";
+  detailLink.textContent = "Ver detalhes →";
 
-  return link;
+  const whatsappLink = document.createElement("a");
+  whatsappLink.href = whatsAppPropertyUrl(imovel);
+  whatsappLink.target = "_blank";
+  whatsappLink.rel = "noopener noreferrer";
+  whatsappLink.className = "btn btn-whatsapp btn-whatsapp--sm";
+  whatsappLink.setAttribute("aria-label", `WhatsApp sobre ${imovel.titulo}`);
+  whatsappLink.appendChild(createWhatsAppIcon());
+  whatsappLink.append(" WhatsApp");
+
+  actions.append(detailLink, whatsappLink);
+  info.append(type, title, location, price, details, actions);
+  article.append(mediaLink, info);
+
+  return article;
 }
 
 async function renderPropertiesGrid(containerId) {
